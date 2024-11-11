@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoListUS.API", "ToDoListUS.API\ToDoListUS.API.csproj", "{7A486776-18C5-4118-B3BA-DEBFBAF6749D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoListUS.Tests", "ToDoListUS.Tests\ToDoListUS.Tests.csproj", "{5B432E22-694D-4307-A946-3CBC230CCC5A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoListUS.Api.Tests", "ToDoListUS.Api.Tests\ToDoListUS.Api.Tests.csproj", "{5B432E22-694D-4307-A946-3CBC230CCC5A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

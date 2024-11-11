@@ -1,0 +1,9 @@
+{
+  "ApiUrl": "https://localhost:44387/",
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  }
+}
