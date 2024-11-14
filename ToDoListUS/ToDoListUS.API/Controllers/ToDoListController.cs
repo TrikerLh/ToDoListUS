@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using ToDoListUS.API.Application;
 
 namespace ToDoListUS.API.Controllers;
 
@@ -6,9 +7,17 @@ namespace ToDoListUS.API.Controllers;
 [Route("api/todo")]
 public class ToDoListController : Controller
 {
-    [HttpPost("AddTask")]
-    public void AddTask([FromBody]string description)
+    private readonly AddTaskHandler _addTaskHandler;
+
+    public ToDoListController(AddTaskHandler addTaskHandler)
     {
-        throw new NotImplementedException();
+        _addTaskHandler = addTaskHandler;
+    }
+
+    [HttpPost("AddTask")]
+    public async Task<IActionResult> AddTask([FromBody]string description)
+    {
+        await _addTaskHandler.Execute(description);
+        return Created("", null);
     }
 }
