@@ -1,27 +1,29 @@
 using System.Net;
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using NSubstitute;
 using NSubstitute.ReceivedExtensions;
 using ToDoListUS.API.Application;
 using ToDoListUS.API.Controllers;
+using ToDoListUS.API.Domain;
 
 namespace ToDoListUS.Api.Tests.Controllers;
 
 public class ToDoListControllerShould
 {
     [Test]
-    public void AddTask()
+    public async Task AddTask()
     {
-        var addTaskHandler = Substitute.For<AddTaskHandler>();
+        var taskRepository = Substitute.For<TaskRepository>();
+        var addTaskHandler = Substitute.For<AddTaskHandler>(taskRepository);
         var toDoListController = new ToDoListController(addTaskHandler);
         const string anyDescription = "Any Description";
         
-        var response =  toDoListController.AddTask(anyDescription).Result;
+        var response =  (Created)await toDoListController.AddTask(anyDescription);
         
-        var createdResult = response as CreatedResult;
-        createdResult?.StatusCode.Should().Be(201);
+        response.StatusCode.Should().Be(201);
         addTaskHandler.Received().Execute(anyDescription);
     }
 }

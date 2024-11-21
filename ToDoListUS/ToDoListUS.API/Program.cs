@@ -1,4 +1,6 @@
 using ToDoListUS.API.Application;
+using ToDoListUS.API.Domain;
+using ToDoListUS.API.Infrastructure;
 
 namespace ToDoListUS.API; 
 public class Program
@@ -14,6 +16,7 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         builder.Services.AddScoped<AddTaskHandler>();
+        builder.Services.AddScoped<TaskRepository>(provider => new DummyTaskRepository());
 
         var app = builder.Build();
 

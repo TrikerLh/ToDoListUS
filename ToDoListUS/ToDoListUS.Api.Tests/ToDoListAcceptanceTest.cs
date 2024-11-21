@@ -27,11 +27,11 @@ public class ToDoListAcceptanceTest
     [Test]
     public async Task AsUserIWantToAddTaskToAToDoList()
     {
-        var taskRepository = Substitute.For<TaskRepository>();
-        var task = new ToDoTask(1, "Write a test that fails");
+        _application.taskRepository.NextIdentity().Returns(1);
+        var toDoTask = new ToDoTask(1, "Write a test that fails");
         
         await _client.PostAsJsonAsync("api/todo/AddTask", "Write a test that fails");
         
-        taskRepository.Received().Store(task);
+        _application.taskRepository.Received().Store(Arg.Is<ToDoTask>(t => t.Equals(toDoTask)));
     }
 }

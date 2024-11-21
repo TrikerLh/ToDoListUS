@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using ToDoListUS.API.Application;
 
@@ -15,9 +16,9 @@ public class ToDoListController : Controller
     }
 
     [HttpPost("AddTask")]
-    public async Task<IActionResult> AddTask([FromBody]string description)
+    public  Task<IResult> AddTask([FromBody]string description)
     {
-        await _addTaskHandler.Execute(description);
-        return Created("", null);
+        _addTaskHandler.Execute(description);
+        return Task.FromResult(Results.Created());
     }
 }

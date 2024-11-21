@@ -2,5 +2,6 @@ namespace ToDoListUS.API.Domain;
 
 public interface TaskRepository
 {
-    void Store(ToDoTask task);
+    public void Store(ToDoTask task);
+    public int NextIdentity();
 }
