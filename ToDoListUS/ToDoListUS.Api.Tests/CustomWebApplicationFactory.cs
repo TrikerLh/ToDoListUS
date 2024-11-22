@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using NSubstitute;
 using ToDoListUS.API;
+using ToDoListUS.API.Application;
 using ToDoListUS.API.Domain;
 
 namespace ToDoListUS.Api.Tests;
@@ -12,7 +13,7 @@ namespace ToDoListUS.Api.Tests;
 internal class CustomWebApplicationFactory : WebApplicationFactory<Program> {
     private string baseApiUrl;
     public TaskRepository taskRepository = Substitute.For<TaskRepository>();
-    //public MarkTaskCompletedHandler MarkTaskCompletedHandler = Substitute.For<MarkTaskCompletedHandler>(new object[] { null });
+    public AddTaskHandler addTaskHandler = Substitute.For<AddTaskHandler>(new object[] { null });
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
@@ -31,7 +32,7 @@ internal class CustomWebApplicationFactory : WebApplicationFactory<Program> {
         builder.ConfigureServices(services => {
             //SwapSingleton(services, ApiClientsMocks.FileSystemService);
             SwapScoped(services, taskRepository);
-            //SwapScoped(services, MarkTaskCompletedHandler);
+            SwapScoped(services, addTaskHandler);
         });
     }
 

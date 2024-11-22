@@ -6,7 +6,7 @@ namespace ToDoListUS.API.Controllers;
 
 [ApiController]
 [Route("api/todo")]
-public class ToDoListController : Controller
+public class ToDoListController : ControllerBase
 {
     private readonly AddTaskHandler _addTaskHandler;
 
@@ -21,4 +21,5 @@ public class ToDoListController : Controller
         _addTaskHandler.Execute(description);
         return Task.FromResult(Results.Created());
     }
+
 }
