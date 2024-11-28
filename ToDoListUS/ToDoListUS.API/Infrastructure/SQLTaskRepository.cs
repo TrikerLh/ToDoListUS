@@ -2,15 +2,15 @@ using ToDoListUS.API.Domain;
 
 namespace ToDoListUS.API.Infrastructure;
 
-public class DummyTaskRepository : TaskRepository
+public class SqlTaskRepository : TaskRepository
 {
     public void Store(ToDoTask task)
     {
-        
+        throw new NotImplementedException();
     }
 
     public int NextIdentity()
     {
-        return 0;
+        throw new NotImplementedException();
     }
 }

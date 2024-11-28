@@ -16,7 +16,7 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         builder.Services.AddScoped<AddTaskHandler>();
-        builder.Services.AddScoped<TaskRepository>(provider => new DummyTaskRepository());
+        builder.Services.AddScoped<TaskRepository>(provider => new SqlTaskRepository());
 
         var app = builder.Build();
 

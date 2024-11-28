@@ -27,7 +27,6 @@ public class ToDoListAcceptanceTest
     [Test]
     public async Task AsUserIWantToAddTaskToAToDoList()
     {
-        _application.taskRepository.NextIdentity().Returns(1);
         var toDoTask = new ToDoTask(1, "Write a test that fails");
         
         await _client.PostAsJsonAsync("api/todo/AddTask", "Write a test that fails");
